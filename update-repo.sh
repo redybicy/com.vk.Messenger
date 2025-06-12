@@ -15,8 +15,6 @@ fi
 
 sudo dnf install flatpak-builder
 flatpak install flathub org.freedesktop.Sdk//24.08
-git clone https://github.com/redybicy/com.vk.Messenger
-cd com.vk.Messenger
 wget $LINK
 rpm2cpio vk-messenger.rpm |cpio -idmv
 
