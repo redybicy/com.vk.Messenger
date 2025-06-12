@@ -2,10 +2,10 @@
 read -p "Version: " version_input
 VERSION=${version_input:-$(date +%Y%m%d)}
 read -p "Link: " link_input
-LINK=${link_input:-$(https://upload.object2.vk-apps.com/vk-me-desktop-dev-5837a06d-5f28-484a-ac22-045903cb1b1a/latest/vk-messenger.rpm)}
+LINK=${link_input:-https://upload.object2.vk-apps.com/vk-me-desktop-dev-5837a06d-5f28-484a-ac22-045903cb1b1a/latest/vk-messenger.rpm}
 
-echo $VERSION
-echo $LINK
+echo "$VERSION"
+echo "$LINK"
 read -rp "Вы уверены, что хотите продолжить? (д/н): " answer
 answer=${answer,,}
 if [[ $answer == "н" || $answer == "n" ]]; then
