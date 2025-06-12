@@ -19,16 +19,25 @@ wget $LINK
 rpm2cpio vk-messenger.rpm |cpio -idmv
 git clone https://github.com/redybicy/vk-messenger
 cd vk-messenger
-find . -mindepth 1 -maxdepth 1 ! -name "vk-messenger.asc" -exec rm -rf {} +
+rm -rfd ./
+curl -O https://redybicy.github.io/vk-messenger/vk-messenger.asc
+touch .nojekyll
 cd ../
 
+read -rp "Вы уверены, что хотите продолжить? (д/н): " answer1
+answer1=${answer1,,}
+if [[ $answer1 == "н" || $answer1 == "n" ]]; then
+    echo "Операция отменена."
+    exit 1
+fi
 sed -i "s/^version: .*/version: $VERSION/" com.vk.Messenger.yml
 flatpak-builder --repo=vk-messenger --force-clean --gpg-sign=0F47C3E83CE3D7F086EF4A3C0921572033AEB5B3 build-dir com.vk.Messenger.yml
 cd vk-messenger
+git init
+git remote add origin git@github.com:redybicy/com.vk.Messenger.git
 git add .
 git commit -m "$VERSION"
-git remote set-url origin git@github.com:redybicy/com.vk.Messenger.git
-git push --set-upstream origin main
+git push -f origin main
 
 cd ../../
 rm -rfd com.vk.Messenger/
