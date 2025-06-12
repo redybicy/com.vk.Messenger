@@ -34,8 +34,6 @@ fi
 sed -i "s/^version: .*/version: $VERSION/" com.vk.Messenger.yml
 flatpak-builder --repo=vk-messenger --force-clean --gpg-sign=0F47C3E83CE3D7F086EF4A3C0921572033AEB5B3 build-dir com.vk.Messenger.yml
 cd vk-messenger
-git init
-git remote add origin git@github.com:redybicy/com.vk.Messenger.git
 git add .
 git commit -m "$VERSION"
 git push -f origin main
