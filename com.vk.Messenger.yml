@@ -1,5 +1,5 @@
 app-id: com.vk.Messenger
-version: 
+version: 6.0.52
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
@@ -7,8 +7,6 @@ command: vk-messenger
 finish-args:
   - --socket=wayland      # Поддержка Wayland
   - --share=network       # Доступ к сети
-  - --talk-name=org.freedesktop.Notifications  # Разрешение для уведомлений
-  - --talk-name=org.freedesktop.portal.Background  # Разрешение для работы в фоне
   - --device=dri          # Доступ к графике
 modules:
   - name: vk-messenger
