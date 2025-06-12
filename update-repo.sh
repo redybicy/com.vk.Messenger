@@ -24,9 +24,8 @@ cd vk-messenger
 git init
 git add .
 git commit -m "$VERSION"
-git branch -M main
 git remote add origin git@github.com:redybicy/vk-messenger.git
-git push -u origin main
+git push --set-upstream origin main
 
 flatpak remove org.freedesktop.Sdk//24.08
 sudo dnf remove flatpak-builder
