@@ -22,6 +22,7 @@ cd vk-messenger
 git remote set-url origin git@github.com:redybicy/vk-messenger.git
 rm -rf ./*
 curl -O https://redybicy.github.io/vk-messenger/vk-messenger.asc
+curl -O https://redybicy.github.io/vk-messenger/README.md
 touch .nojekyll
 cd ../
 
