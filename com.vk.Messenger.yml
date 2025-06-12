@@ -1,0 +1,34 @@
+app-id: com.vk.Messenger
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+command: vk-messenger
+finish-args:
+  - --socket=wayland      # Поддержка Wayland
+  - --share=network       # Доступ к сети
+  - --talk-name=org.freedesktop.Notifications  # Разрешение для уведомлений
+  - --talk-name=org.freedesktop.portal.Background  # Разрешение для работы в фоне
+  - --device=dri          # Доступ к графике
+modules:
+  - name: vk-messenger
+    buildsystem: simple
+    build-commands:
+      # Создание директории для файлов приложения
+      - install -d /app/opt/vk-messenger
+      - cp -r opt/vk-messenger/* /app/opt/vk-messenger/
+      # Создание wrapper-скрипта в /app/bin
+      - install -d /app/bin
+      - echo '#!/bin/sh' > /app/bin/vk-messenger
+      - echo 'exec /app/opt/vk-messenger/vk-messenger --no-sandbox --ozone-platform=wayland "$@"' >> /app/bin/vk-messenger
+      - chmod +x /app/bin/vk-messenger
+      # Копирование и настройка desktop-файла
+      - install -d /app/share/applications
+      - cp usr/share/applications/vk-messenger.desktop /app/share/applications/com.vk.Messenger.desktop
+      - sed -i 's/Icon=vk-messenger/Icon=com.vk.Messenger/' /app/share/applications/com.vk.Messenger.desktop
+      # Копирование иконок
+      - install -d /app/share/icons/hicolor
+      - install -d /app/share/icons/hicolor/scalable/apps
+      - cp usr/share/icons/hicolor/scalable/apps/vk-messenger.svg /app/share/icons/hicolor/scalable/apps/com.vk.Messenger.svg
+    sources:
+      - type: dir
+        path: ./
