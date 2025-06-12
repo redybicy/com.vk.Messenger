@@ -32,7 +32,8 @@ if [[ $answer1 == "н" || $answer1 == "n" ]]; then
     exit 1
 fi
 sed -i "s/^version: .*/version: $VERSION/" com.vk.Messenger.yml
-flatpak-builder --repo=vk-messenger --force-clean --gpg-sign=0F47C3E83CE3D7F086EF4A3C0921572033AEB5B3 build-dir com.vk.Messenger.yml
+flatpak-builder --repo=repo --force-clean --gpg-sign=0F47C3E83CE3D7F086EF4A3C0921572033AEB5B3 build-dir com.vk.Messenger.yml
+mv repo/* vk-messenger/
 cd vk-messenger
 git add .
 git commit -m "$VERSION"
