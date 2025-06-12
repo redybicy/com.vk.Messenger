@@ -19,7 +19,7 @@ wget $LINK
 rpm2cpio vk-messenger.rpm |cpio -idmv
 git clone https://github.com/redybicy/vk-messenger
 cd vk-messenger
-rm -rfd ./*
+rm -rf ./*
 curl -O https://redybicy.github.io/vk-messenger/vk-messenger.asc
 touch .nojekyll
 cd ../
