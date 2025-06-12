@@ -24,6 +24,7 @@ cd vk-messenger
 git init
 git add .
 git commit -m "$VERSION"
+git branch -M main
 git remote add origin git@github.com:redybicy/vk-messenger.git
 git push --set-upstream origin main
 
