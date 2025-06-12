@@ -17,12 +17,11 @@ modules:
       - cp -r opt/vk-messenger/* /app/opt/vk-messenger/
       # Создание wrapper-скрипта в /app/bin
       - install -d /app/bin
-      - echo '#!/bin/sh' > /app/bin/vk-messenger
-      - echo 'exec /app/opt/vk-messenger/vk-messenger --no-sandbox --ozone-platform=wayland "$@"' >> /app/bin/vk-messenger
-      - chmod +x /app/bin/vk-messenger
+      - ln -s /app/opt/vk-messenger/vk-messenger /app/bin/vk-messenger
       # Копирование и настройка desktop-файла
       - install -d /app/share/applications
       - cp usr/share/applications/vk-messenger.desktop /app/share/applications/com.vk.Messenger.desktop
+      - sed -i 's/Exec=vk-messenger %U/Exec=vk-messenger --no-sandbox --ozone-platform=wayland %U/' /app/share/applications/com.vk.Messenger.desktop
       - sed -i 's/Icon=vk-messenger/Icon=com.vk.Messenger/' /app/share/applications/com.vk.Messenger.desktop
       # Копирование иконок
       - install -d /app/share/icons/hicolor
